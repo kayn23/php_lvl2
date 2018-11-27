@@ -6,5 +6,15 @@ abstract class Product
   {
     $this->$price = $price;
   }
-  abstract public function getFinalPrice() {}
+  abstract public function getPrice();
 }
+
+class digitalProduct extends Product
+{
+  public function getPrice() {
+    return $this->price / 2;
+  }
+}
+
+
+
