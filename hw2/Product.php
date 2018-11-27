@@ -16,5 +16,11 @@ class digitalProduct extends Product
   }
 }
 
-
+class oneProduct extends Product
+{
+  public function getPrice()
+  {
+    return $this->price;
+  }
+}
 
