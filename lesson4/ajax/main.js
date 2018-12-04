@@ -8,21 +8,46 @@
     </div>
 </div>
 */
-var catalog = $('#js-catalog');
 
-$(document).ready(function(){
+
+$(document).ready(function () {
   var elems;
-  var id = 1;
-  http(id);
-  console.log(elems);
+  var ids = 1;
+  elems = http(ids);
+  render(elems);
+
+  $('.js-more').click(function(){
+    ids +=25;
+    var elem = http(ids);
+    render(elem);
+  });
 });
 
-async function http(id){
-  return await $.ajax({
-    url:`index.php?id={id}`,
+function http(id) {
+  var elem;
+  $.ajax({
+    url: `ajax.php?id=${id}`,
     async: false,
-    success: function(data) {
-      return data;
+    success: function (data) {
+      elem = JSON.parse(data);
     }
+  });
+  return elem;
+}
+
+function render(arr) {
+  var catalog = $('#js-catalog');
+  arr.forEach(card => {
+    var elem = $('<div/>', {
+      class: "card col-4 mt-2"
+    });
+    elem.html(`
+      <div class="card-body">
+        <img class="card-img-top" src="${card.img}" alt="Card image cap">
+        <h5 class="card-title">${card.name}</h5>
+        <p class="card-text">Price: ${card.price}</p>
+      </div>
+    `);
+    elem.appendTo(catalog);
   });
 }
