@@ -13,6 +13,9 @@ $twig = new Twig_Environment($loader, array(
     'cache'       => 'compilation_cache',
     'auto_reload' => true
 ));
-
-$obg = $db->query('SELECT * FROM products')->fetchAll();
-echo $twig->render('products.twig', array('products'=>$obg));
+$id = (isset($_GET['id']))?$_GET['id']:0;
+$obg = $db->query('SELECT * FROM products LIMIT '.$id.',24')->fetchAll();
+echo $twig->render('products.twig', array(
+                                        'products'=>$obg,
+                                        'id' => $id+24
+));
