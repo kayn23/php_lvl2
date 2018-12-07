@@ -1,0 +1,20 @@
+<div class="autorization js-aut">
+    {% if user_login == false %}
+        <form autocomplete="off">
+            <label class="autorization--label" for="login">Логин</label>
+            <input class="autorization--input" id="login" type="text" name="login"/>
+            <label class="autorization--label" for="pass">Пароль</label>
+            <input class="autorization--input" id="pass" type="password" name="pass"/>
+        </form>
+        <div class="line"></div>
+        <div class="autorization--login">
+            <button class="login_btn login_btn-in">Войти</button>
+            <button class="login_btn login_btn-out">Выйти</button>
+        </div>
+        <button class="login_btn login_btn-reg">Зарегистрироваться</button>
+    {% else %}
+        <div class="autorization--login">
+            <button class="login_btn login_btn-out">Выйти</button>
+        </div>
+    {% endif %}
+</div>
