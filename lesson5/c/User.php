@@ -15,7 +15,7 @@ class User
     private $createUser;
     public function __construct()
     {
-        include_once 'PDO.php';
+        include_once '../m/PDO.php';
         $this->checkUser =  $db->prepare('SELECT * FROM users WHERE name = :name');
         $this->createUser = $db->prepare('INSERT INTO users(name,pass,email) VALUES (:name,:pass,:email)');
         if (isset($_COOKIE['user'])) {
@@ -35,8 +35,22 @@ class User
     {
         if ($this->checkUser($login, $password) !== false) {
             setcookie('user', $login, time() + 3600*24*7*365, '/');
+            return true;
         } else {
             return false;
+        }
+    }
+
+    public function registration($login, $password) {
+        try {
+            $this->createUser->execute(array(
+                ':name'=>$login,
+                ':pass'=>md5($password),
+                ':email'=>'example@mail.ru'
+            ));
+            return true;
+        } catch (PDOException $e) {
+            dd($e);
         }
     }
 
@@ -56,7 +70,7 @@ class User
     private function checkUser($name, $pass) {
         $this->checkUser->execute(array(':name'=>$name));
         $user = $this->checkUser->fetch(PDO::FETCH_ASSOC);
-        if ($user['pass'] == $pass) {
+        if ($user['pass'] == md5($pass)) {
             return $user;
         } else {
             return false;
