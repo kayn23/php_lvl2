@@ -71,4 +71,12 @@ class User
         $this->checkUser->execute(array(':name'=>$name));
         return $this->checkUser->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function checkLogin() {
+        if (isset($_COOKIE['user'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
