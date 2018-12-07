@@ -1,20 +1,21 @@
 <div class="autorization js-aut">
-    {% if user_login == false %}
-        <form autocomplete="off">
-            <label class="autorization--label" for="login">Логин</label>
-            <input class="autorization--input" id="login" type="text" name="login"/>
+    {% if user == 'anonimus' %}
+        <form action="?action=autorization" method="POST" autocomplete="off">
+            <label class="autorization--label" for="name">Логин</label>
+            <input class="autorization--input" id="name" type="text" name="name"/>
             <label class="autorization--label" for="pass">Пароль</label>
             <input class="autorization--input" id="pass" type="password" name="pass"/>
+            <div class="autorization--login">
+                <button class="login_btn login_btn-in" name="action" value="login">Войти</button>
+            </div>
+            <button class="login_btn login_btn-reg" name="action" value="reg">Зарегистрироваться</button>
         </form>
         <div class="line"></div>
-        <div class="autorization--login">
-            <button class="login_btn login_btn-in">Войти</button>
-            <button class="login_btn login_btn-out">Выйти</button>
-        </div>
-        <button class="login_btn login_btn-reg">Зарегистрироваться</button>
     {% else %}
-        <div class="autorization--login">
-            <button class="login_btn login_btn-out">Выйти</button>
-        </div>
+        <form action="" method="GET" class="autorization--login">
+            <input type="hidden" name="action" value="logout">
+            <button class="login_btn login_btn-out" value="logout">Выйти</button>
+        </form>
     {% endif %}
+
 </div>

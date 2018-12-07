@@ -18,30 +18,34 @@
     <div class="container">
         <header class="top_side top_side-position">
             <div class="top_side--bar">
-                <a class="top_side--logo" href="/app/"><i class="fas fa-book"></i>&nbsp;Booker</a>
+                <a class="top_side--logo" href="{{ base_url }}"><i class="fas fa-book"></i>&nbsp;Booker</a>
                 <div class="top_side--support">
                     <a class="top_side--link" href="#"> <span> &#183;</span>Центр помощи</a>
                 </div>
             </div>
             <div class="top--login js-account">
-                <img class="top--img" src="img/avatar_top.jpg" alt="avatar"/>
+                {% if user != 'anonimus' %}
+                    <img class="top--img" src="img/avatar_top.jpg" alt="avatar"/>
+                {% endif %}
                 <div class="top--login_text">{{ user }}</div>
                 <span class="top--open js-account--open"><i class="fas fa-chevron-circle-down"></i></span>
                 <span class="top--close js-account--close"><i class="fas fa-chevron-circle-up"></i></span>
             </div>
         </header>
+        {% block login %}
+        {% endblock %}
+
         {% block sidebar %}
         {% endblock %}
 
         {% block main %}
         {% endblock %}
 
-        {% block login %}
-        {% endblock %}
+
     </div>
     <!-- build:js js/vendor.js-->
     <!-- bower:js-->
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- endbower-->
     <!-- endbuild-->
     <!-- build:js js/main.js-->
