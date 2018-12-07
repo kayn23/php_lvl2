@@ -1,0 +1,8 @@
+{% extends "base.twig" %}
+{% block content %}
+  {% for img in picture %}
+  <a href="img/small/{{ img }}">
+    <img class="img_small" src="img/small/{{ img }}" alt="{{ img }}">
+  </a>
+  {% endfor %}
+{% endblock content %}

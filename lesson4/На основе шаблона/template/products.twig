@@ -1,0 +1,15 @@
+{% extends "index.twig" %}
+{% block content %}
+    <div class="row">
+    {% for product in products %}
+        <div class="card col-4" id="{{ product.id }}">
+            <img class="card-img-top" src="{{ product.img }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.price }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <a href="http://localhost/php2/lesson4/%D0%9D%D0%B0%20%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%B5%20%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0?id={{ id }}">Больше</a>
+{% endblock content %}
