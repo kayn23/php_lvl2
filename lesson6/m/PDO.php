@@ -62,7 +62,7 @@ class DB
      * @param array $arg
      * @return array
      */
-    public static function select($table, $arg = [])
+    public static function select($table, $arg = [], $where = '',$fetch = false)
     {
         if (count($arg) == 0) {
             $arg = '*';
@@ -73,10 +73,11 @@ class DB
             }
             $arg = substr($args, 0, -1);
         }
-        $sql = "SELECT $arg FROM $table";
+        $where = ($where != '')?"WHERE $where":'';
+        $sql = "SELECT $arg FROM $table $where";
         $stmt = self::getPDO()->prepare($sql);
         $stmt->execute();
-        return $stmt->fetchAll();
+        return (!$fetch)?$stmt->fetchAll():$stmt->fetch();
     }
 
     /**
