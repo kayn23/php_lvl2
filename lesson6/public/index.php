@@ -13,9 +13,7 @@ include_once '../lib/Twig/Autoloader.php';
 Twig_Autoloader::register();
 $loader = new Twig_Loader_Filesystem('../v');
 global $twig;
-$twig = new Twig_Environment($loader, array(
-    'auto_reload' => true
-));
+$twig = new Twig_Environment($loader);
 
 # автозагрузчик
 spl_autoload_register(function ($class_name) {

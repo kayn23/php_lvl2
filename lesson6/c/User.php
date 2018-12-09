@@ -11,13 +11,9 @@ class User
     public $name;
     public $email;
     public $hobby;
-    private $checkUser;
-    private $createUser;
     public function __construct()
     {
         include_once '../m/PDO.php';
-        $this->checkUser =  $db->prepare('SELECT * FROM users WHERE name = :name');
-        $this->createUser = $db->prepare('INSERT INTO users(name,pass,email) VALUES (:name,:pass,:email)');
         if (isset($_COOKIE['user'])) {
             $user = $this->getInfoUser($_COOKIE['user']);
             $this->name = $user['name'];
@@ -41,17 +37,12 @@ class User
         }
     }
 
-    public function registration($login, $password) {
-        try {
-            $this->createUser->execute(array(
-                ':name'=>$login,
-                ':pass'=>md5($password),
-                ':email'=>'example@mail.ru'
-            ));
-            return true;
-        } catch (PDOException $e) {
-            dd($e);
-        }
+    public function registration($login, $password,$email) {
+        DB::insert('users',[
+           'name'=>$login,
+           'pass'=>md5($password),
+           'email'=>$email
+        ]);
     }
 
     /**
@@ -68,8 +59,7 @@ class User
      * @return bool
      */
     private function checkUser($name, $pass) {
-        $this->checkUser->execute(array(':name'=>$name));
-        $user = $this->checkUser->fetch(PDO::FETCH_ASSOC);
+        $user = DB::select('users',[],"name='$name'",true);
         if ($user['pass'] == md5($pass)) {
             return $user;
         } else {
@@ -82,8 +72,7 @@ class User
      * @return mixed
      */
     private function getInfoUser($name) {
-        $this->checkUser->execute(array(':name'=>$name));
-        return $this->checkUser->fetch(PDO::FETCH_ASSOC);
+        return DB::select('users',[],"name='$name'",true);
     }
 
     public function checkLogin() {
