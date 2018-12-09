@@ -14,6 +14,10 @@ class M_Book
         return DB::select('products');
     }
 
+    public function getOne($id) {
+        return DB::select('products',[],"id=$id",true);
+    }
+
 
     public function create($post,$file)
     {
@@ -35,6 +39,9 @@ class M_Book
         }
     }
 
+    public function delete($id){
+        return DB::delete('products',"id=$id");
+    }
     private function checkData($data = []) {
         foreach ($data as $item) {
             if (!$item) {
@@ -43,4 +50,6 @@ class M_Book
         }
         return true;
     }
+
+
 }

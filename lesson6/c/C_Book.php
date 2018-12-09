@@ -25,6 +25,12 @@ class C_Book extends C_Controller
         $this->var['books'] = $this->book->getAllBooks();
     }
 
+    public function action_onebook()
+    {
+        $this->page = 'book_one.twig';
+        $this->var['book'] = $this->book->getOne($_GET['id']);
+    }
+
     public function action_addbook()
     {
         $this->page = 'addBook.twig';
@@ -33,11 +39,21 @@ class C_Book extends C_Controller
     public function action_addedbook()
     {
         if (!empty($_POST)) {
-            if ($this->book->create($_POST,$_FILES)) {
-                $this->page = 'book_good.twig';
+            if ($this->book->create($_POST, $_FILES)) {
+                $this->var['action'] = 'Книга добавлена';
             } else {
-                $this->page = 'book_bad.twig';
+                $this->var['action'] = 'Ошибка при добавлении книги';
             }
+            $this->page = 'book_good.twig';
         }
+    }
+
+    public function action_delete() {
+        if ($this->book->delete($_GET['id']) == 1) {
+            $this->var['action'] = 'Книга удалена';
+        } else {
+            $this->var['action'] = 'Ошибка при удалении';
+        }
+        $this->page = 'book_good.twig';
     }
 }

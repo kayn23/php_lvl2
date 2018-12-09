@@ -11,15 +11,22 @@
     <div class="main">
         <header class="main--header">
             <h1 class="main--caption">Доступные книги</h1>
-            <div class="filter_book js-filter"><a class="filter_book--item active" href="#">Все книги</a><a class="filter_book--item" href="#">Самые популярные</a><a class="filter_book--item" href="#">Последние</a></div>
+            <div class="filter_book js-filter"><a class="filter_book--item active" href="#">Все книги</a><a
+                        class="filter_book--item" href="#">Самые популярные</a><a class="filter_book--item" href="#">Последние</a>
+            </div>
         </header>
         <div class="books">
             {% for key in books %}
-                <div class="book" id="{{ kei.id }}"><img class="book--image" src="{{ key.img }}"/>
-                    <h4 class="book--name">{{ key.name }}</h4>
-                    <p class="book--autor">{{ key.author }}</p>
+                <div class="book" id="{{ key.id }}">
+                    <a href="?c=book&action=onebook&id={{ key.id }}">
+                        <img class="book--image" src="{{ key.img }}"/>
+
+                        <h4 class="book--name">{{ key.name }}</h4>
+                        <p class="book--autor">{{ key.author }}</p>
+                    </a>
                 </div>
             {% endfor %}
-        </div><a class="main--more" href="#" style="color:black">Больше</a>
+        </div>
+        <a class="main--more" href="#" style="color:black">Больше</a>
     </div>
 {% endblock %}

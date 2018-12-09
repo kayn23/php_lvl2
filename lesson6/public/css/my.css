@@ -18,6 +18,12 @@
     font-weight: 700;
 }
 
+
+.book--name,
+.book--autor {
+    color: black;
+}
+
 .book--form {
     margin: 0 auto;
     max-width: 700px;
@@ -61,4 +67,37 @@
 
 .book--btn:focus {
     outline: 3px solid #4d90fe;
+}
+
+.onebook {
+    padding: 15px 50px;
+    position: relative;
+    font-size: 20px;
+}
+
+.onebook--delete {
+    position: absolute;
+    color: black;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+}
+
+.onebook--price {
+    margin-bottom: 10px;
+}
+
+.onebook--price span {
+    font-weight: 700;
+}
+
+.onebook--delete:hover {
+    color: red;
+}
+
+.onebook img {
+    float: left;
+    margin-right: 10px;
 }

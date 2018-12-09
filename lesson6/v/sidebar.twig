@@ -1,9 +1,11 @@
 <div class="sidebar sidebar-position">
+    {% if user != 'anonimus' %}
     <div class="open_panel js-sidebar-toggle"><i class="fas fa-ellipsis-v"></i></div>
     <a href="?c=book&action=addbook" class="btn btn-position_sidebar_left"><span class="btn--plus">
              <i class="fas fa-plus"></i></span>Добавить книгу
     </a>
     <div class="line"></div>
+    {% endif %}
     <nav class="nav">
         {% if user != 'anonimus' %}
             <a class="nav--link" href="http://localhost/php2/lesson6/public/index.php?c=page&action=loginPage">
