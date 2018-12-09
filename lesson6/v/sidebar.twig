@@ -1,24 +1,36 @@
 <div class="sidebar sidebar-position">
     <div class="open_panel js-sidebar-toggle"><i class="fas fa-ellipsis-v"></i></div>
     <div class="btn btn-position_sidebar_left"><span class="btn--plus">
-             <i class="fas fa-plus"></i></span>Добавить книгу</div>
+             <i class="fas fa-plus"></i></span>Добавить книгу
+    </div>
     <div class="line"></div>
-    <nav class="nav"><a class="nav--link" href="http://localhost/php2/lesson6/public/index.php?action=loginPage">
-            <i class="fas fa-book"></i>Мои профиль</a><a class="nav--link" href="#">
-            <i class="fas fa-globe-asia"></i>Обзор</a><a class="nav--link" href="#">
-            <i class="fas fa-shopping-cart"></i>Купить книги</a><a class="nav--link" href="#">
-            <i class="fas fa-star"></i>Популярные книги</a><a class="nav--link" href="#">
-            <i class="fas fa-list"></i>Корзина</a><a class="nav--link" href="#">
-            <i class="fas fa-history"></i>История</a></nav>
+    <nav class="nav">
+        {% if user != 'anonimus' %}
+            <a class="nav--link" href="http://localhost/php2/lesson6/public/index.php?c=page&action=loginPage">
+                <i class="fas fa-book"></i>Мои профиль</a>
+        {% endif %}
+        <a class="nav--link" href="#">
+            <i class="fas fa-globe-asia"></i>Обзор</a>
+        <a class="nav--link" href="#">
+            <i class="fas fa-shopping-cart"></i>Купить книги</a>
+        <a class="nav--link" href="#">
+            <i class="fas fa-star"></i>Популярные книги</a>
+        <a class="nav--link" href="#">
+            <i class="fas fa-list"></i>Корзина</a>
+        <a class="nav--link" href="#">
+            <i class="fas fa-history"></i>История</a>
+    </nav>
     <div class="line"></div>
     <div class="last_comment">
-        <div class="last_comment--item"> <span class="last_comment--clock"><i class="far fa-clock fa-flip-horizontal"></i></span>
+        <div class="last_comment--item"><span class="last_comment--clock"><i
+                        class="far fa-clock fa-flip-horizontal"></i></span>
             <div class="last_comment--text">
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate, a.</p>
                 <p class="last_comment--text-transper">24 минуты назад</p>
             </div>
         </div>
-        <div class="last_comment--item"> <span class="last_comment--clock"><i class="far fa-clock fa-flip-horizontal"></i></span>
+        <div class="last_comment--item"><span class="last_comment--clock"><i
+                        class="far fa-clock fa-flip-horizontal"></i></span>
             <div class="last_comment--text">
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate, a.</p>
                 <p class="last_comment--text-transper">24 минуты назад</p>

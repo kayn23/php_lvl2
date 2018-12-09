@@ -6,7 +6,7 @@
  * Time: 11:45
  */
 
-class User
+class M_User
 {
     public $name;
     public $email;

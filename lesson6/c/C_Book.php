@@ -12,7 +12,7 @@ class C_Book extends C_Controller
 
     public function __construct()
     {
-        $this->book = new Book();
+        $this->book = new M_Book();
     }
 
     public function action_index(){

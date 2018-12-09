@@ -6,7 +6,7 @@
  * Time: 15:42
  */
 
-class Book
+class M_Book
 {
     //todo Добавить пагнинацию
     public function getAllBooks(){

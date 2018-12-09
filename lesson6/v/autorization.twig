@@ -19,8 +19,7 @@
         </form>
         <div class="line"></div>
     {% else %}
-        <form action="" method="GET" class="autorization--login">
-            <input type="hidden" name="action" value="logout">
+        <form action="?c=page&action=logout" method="POST" class="autorization--login">
             <button class="login_btn login_btn-out" value="logout">Выйти</button>
         </form>
     {% endif %}
