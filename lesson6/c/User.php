@@ -13,7 +13,7 @@ class User
     public $hobby;
     public function __construct()
     {
-        include_once '../m/PDO.php';
+//        include_once '../m/DB.php';
         if (isset($_COOKIE['user'])) {
             $user = $this->getInfoUser($_COOKIE['user']);
             $this->name = $user['name'];

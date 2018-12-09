@@ -5,10 +5,6 @@
  * Date: 07.12.2018
  * Time: 11:24
  */
-/*
- * Подключаю twig раньше autoload
- * иначе программа ругается на его инициализыцию
- */
 
 # автозагрузчик
 include_once '../autoload.php';
@@ -19,10 +15,13 @@ $action .= (isset($_GET['action'])) ? $_GET['action'] : 'index';
 
 if (isset($_GET['c'])) {
     switch ($_GET['c']) {
-        default:
+        case 'page':
             $controller = new C_Page();
+            break;
+        default:
+            $controller = new C_Book();
     }
 } else {
-    $controller = new C_Page();
+    $controller = new C_Book();
 }
 $controller->Request($action);
