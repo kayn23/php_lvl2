@@ -5,12 +5,17 @@
             <input class="autorization--input" id="name" type="text" name="name"/>
             <label class="autorization--label" for="pass">Пароль</label>
             <input class="autorization--input" id="pass" type="password" name="pass"/>
-            <label class="autorization--label" for="email">Email</label>
-            <input class="autorization--input" id="email" type="text" name="email"/>
-            <div class="autorization--login">
+            <label class="autorization--label js-regin" for="email">Email</label>
+            <input class="autorization--input js-regin" id="email" type="text" name="email"/>
+            <div class="autorization--login js-login">
                 <button class="login_btn login_btn-in" name="action" value="login">Войти</button>
             </div>
-            <button class="login_btn login_btn-reg" name="action" value="reg">Зарегистрироваться</button>
+
+            <div class="autorization--login js-regin">
+                <button class="login_btn login_btn-reg " name="action" value="reg">Зарегистрироваться</button>
+            </div>
+            <a class="autorization--link js-log js-regin">Войти</a>
+            <a class="autorization--link js-reg">Зарегистрироваться</a>
         </form>
         <div class="line"></div>
     {% else %}

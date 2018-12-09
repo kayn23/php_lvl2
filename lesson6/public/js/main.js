@@ -42,3 +42,17 @@ $('.js-filter a').click(function(e){
   }
 });
 
+$('.js-reg').click(function(){
+    $('.js-reg').hide();
+    $('.js-login').hide();
+    $('.js-regin').show();
+    $('.js-log').show();
+});
+
+$('.js-log').click(function(){
+    $('.js-log').hide();
+    $('.js-regin').hide();
+    $('.js-login').show();
+    $('.js-reg').show();
+});
+

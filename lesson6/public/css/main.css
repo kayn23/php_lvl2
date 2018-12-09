@@ -316,9 +316,20 @@ body {
   padding: 10px 0;
 }
 
+.autorization--link {
+
+}
+
+.autorization--link:hover {
+  cursor: pointer;
+}
+
 .login_btn {
   margin: 0 auto;
   padding: 2px 10px;
   width: 90%;
+}
+.js-regin {
+  display: none;
 }
 /*# sourceMappingURL=main.css.map */
