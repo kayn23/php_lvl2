@@ -1,0 +1,19 @@
+.loginPage {
+    padding: 15px 30px;
+}
+
+.loginPage--input {
+    margin: 0 auto 10px;
+    /*width: 90%;*/
+    padding: 3px 10px;
+    font-size: 18px;
+    color: #7a839c;
+    border-radius: 5px;
+    border: 2px solid rgba(243, 200, 120, 0.5);
+    text-align: center;
+}
+
+.loginPage--label {
+    font-size: 24px;
+    font-weight: 700;
+}

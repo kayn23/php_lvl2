@@ -1,0 +1,20 @@
+{% extends 'index.twig' %}
+{% block sidebar %}
+    {% include 'sidebar.twig' %}
+{% endblock %}
+
+{% block login %}
+    {% include 'autorization.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <header class="main--header">
+            <h1 class="main--caption">Личный кабинет {{ user }}</h1>
+        </header>
+        <div class="loginPage">
+            <label for="loginPage_email" class="loginPage--label">Ваш Email</label>
+            <input id="loginPage_email" type="text" value="{{ email }}" class="loginPage--input">
+        </div>
+    </div>
+{% endblock %}

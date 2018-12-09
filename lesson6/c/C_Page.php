@@ -36,4 +36,13 @@ class C_Page extends C_Controller
         header('location: http://localhost/php2/lesson6/public/index.php');
     }
 
+    public function action_loginPage() {
+        $user = new User();
+        $this->page = 'login_page.twig';
+        $this->var = [
+            'title' => 'Личный кабинет',
+            'user' => (isset($_COOKIE['user']))?($_COOKIE['user']):"anonimus",
+            'email' => $user->email
+        ];
+    }
 }
