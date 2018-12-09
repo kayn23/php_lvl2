@@ -3,6 +3,7 @@
 /**
  * Class DB
  */
+//include "function.php";
 class DB
 {
     const DB_DRIVER = 'mysql';
@@ -147,14 +148,16 @@ class DB
     {
         switch ($e->getCode()) {
             case 23000:
-                echo 'Поля должны быть уникальными';
+                dd('Поля должны быть уникальными');
                 break;
             case 23502:
-                echo 'Полян не должны быть пустыми';
+                dd('Полян не должны быть пустыми');
                 break;
             case 23503:
-                echo 'Нарушена целостность данных';
+                dd('Нарушена целостность данных');
                 break;
+            default:
+                dd($e->getCode());
         }
     }
 }

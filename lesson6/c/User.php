@@ -43,6 +43,7 @@ class User
            'pass'=>md5($password),
            'email'=>$email
         ]);
+        setcookie('user', $login, time() + 3600*24*7*365, '/');
     }
 
     /**
