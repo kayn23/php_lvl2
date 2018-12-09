@@ -1,0 +1,20 @@
+{% extends 'index.twig' %}
+{% block sidebar %}
+    {% include 'sidebar.twig' %}
+{% endblock %}
+
+{% block login %}
+    {% include 'autorization.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <header class="main--header">
+            <h1 class="main--caption">Добавить книгу</h1>
+        </header>
+        <div class="loginPage">
+            <h3>Ошибка при добавлении книги</h3>
+            <a href="?c=book&action=addbook">вернуться к добавлению книги</a>
+        </div>
+    </div>
+{% endblock %}

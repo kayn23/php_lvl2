@@ -140,6 +140,7 @@ body {
 }
 
 .btn-position_sidebar_left {
+  display: block;
   margin: 30px 20px;
 }
 

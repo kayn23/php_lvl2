@@ -1,6 +1,6 @@
 <?php
 include_once '../lib/Twig/Autoloader.php';
-include_once 'm/function.php';
+include_once 'lib/utilits.php';
 Twig_Autoloader::register();
 spl_autoload_register("gbStandardAutoload");
 

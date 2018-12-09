@@ -1,5 +1,5 @@
 .loginPage {
-    padding: 15px 30px;
+    padding: 15px 50px;
 }
 
 .loginPage--input {
@@ -14,6 +14,51 @@
 }
 
 .loginPage--label {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
+}
+
+.book--form {
+    margin: 0 auto;
+    max-width: 700px;
+    width: 100%;
+}
+
+.book--label {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.book--input {
+    margin: 0 auto 10px;
+    max-width: 700px;
+    width: 100%;
+    padding: 3px 10px;
+    font-size: 18px;
+    color: #7a839c;
+    border-radius: 5px;
+    border: 2px solid rgba(243, 200, 120, 0.5);
+    text-align: center;
+}
+
+.book--input-text {
+    resize: none;
+    height: 300px;
+    text-align: left;
+}
+
+.book--input:focus {
+    color: black;
+}
+
+.book--btn {
+    display: block;
+    width: 500px;
+    margin: 0;
+}
+
+.book--btn:focus {
+    outline: 3px solid #4d90fe;
 }

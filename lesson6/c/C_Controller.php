@@ -5,7 +5,6 @@
  * Date: 07.12.2018
  * Time: 15:21
  */
-include_once '../m/function.php';
 class C_Controller
 {
     protected $var;

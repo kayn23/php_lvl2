@@ -1,0 +1,32 @@
+{% extends 'index.twig' %}
+{% block sidebar %}
+    {% include 'sidebar.twig' %}
+{% endblock %}
+
+{% block login %}
+    {% include 'autorization.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <header class="main--header">
+            <h1 class="main--caption">Добавить книгу</h1>
+        </header>
+        <div class="loginPage">
+            <form action="?c=book&action=addedbook" method="POST" enctype="multipart/form-data" autocomplete="off" class="book--form">
+                <label for="book_name" class="book--label">Название книги</label>
+                <input id="book_name" type="text" placeholder="Название" class="book--input" name="name">
+                <label for="book_prise" class="book--label">Стоимость</label>
+                <input id="book_prise" type="text" placeholder="0,0" class="book--input" name="prece">
+                <label for="book_author" class="book--label">Автор</label>
+                <input id="book_author" type="text" placeholder="Автор" class="book--input" name="author">
+                <label for="book_describe" class="book--label">Описание</label>
+                <textarea id="book_describe" class="book--input book--input-text" name="description">
+                </textarea>
+                <label for="book_file" class="book--label">Картинка</label>
+                <input id="book_file" accept="image/*" type="file" class="book--input" name="photo">
+                <button class="btn login_btn book--btn">Отправить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

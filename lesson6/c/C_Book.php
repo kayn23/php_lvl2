@@ -13,14 +13,31 @@ class C_Book extends C_Controller
     public function __construct()
     {
         $this->book = new M_Book();
-    }
-
-    public function action_index(){
-        $this->page = 'main.twig';
         $this->var = [
             'title' => 'Главная',
-            'user' => (isset($_COOKIE['user']))?($_COOKIE['user']):"anonimus",
-            'books' => $this->book->getAllBooks()
+            'user' => (isset($_COOKIE['user'])) ? ($_COOKIE['user']) : "anonimus"
         ];
+    }
+
+    public function action_index()
+    {
+        $this->page = 'main.twig';
+        $this->var['books'] = $this->book->getAllBooks();
+    }
+
+    public function action_addbook()
+    {
+        $this->page = 'addBook.twig';
+    }
+
+    public function action_addedbook()
+    {
+        if (!empty($_POST)) {
+            if ($this->book->create($_POST,$_FILES)) {
+                $this->page = 'book_good.twig';
+            } else {
+                $this->page = 'book_bad.twig';
+            }
+        }
     }
 }
