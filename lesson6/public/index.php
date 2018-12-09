@@ -9,16 +9,9 @@
  * Подключаю twig раньше autoload
  * иначе программа ругается на его инициализыцию
  */
-include_once '../lib/Twig/Autoloader.php';
-Twig_Autoloader::register();
-$loader = new Twig_Loader_Filesystem('../v');
-global $twig;
-$twig = new Twig_Environment($loader);
 
 # автозагрузчик
-spl_autoload_register(function ($class_name) {
-    include_once '../c/'.$class_name . '.php';
-});
+include_once '../autoload.php';
 
 #роутинг
 $action = 'action_';
@@ -27,9 +20,9 @@ $action .= (isset($_GET['action'])) ? $_GET['action'] : 'index';
 if (isset($_GET['c'])) {
     switch ($_GET['c']) {
         default:
-            $controller = new C_Page($twig);
+            $controller = new C_Page();
     }
 } else {
-    $controller = new C_Page($twig);
+    $controller = new C_Page();
 }
 $controller->Request($action);

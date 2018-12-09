@@ -10,11 +10,9 @@ class C_Controller
 {
     protected $var;
     protected $page;
-    protected $twig;
 
-    public function __construct($twig)
+    public function __construct()
     {
-        $this->twig = $twig;
     }
 
     public function Request($action)
@@ -24,7 +22,9 @@ class C_Controller
     }
 
     protected function template() {
-        echo $this->twig->render($this->page, $this->var);
+        $loader = new Twig_Loader_Filesystem('../v');
+        $twig = new Twig_Environment($loader);
+        echo $twig->render($this->page, $this->var);
     }
     public function __call($name, $params){
         die('Не пишите фигню в url-адресе!!! '.$name);
