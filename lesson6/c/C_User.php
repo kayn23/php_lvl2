@@ -47,7 +47,8 @@ class C_User extends C_Controller
             'title' => 'Личный кабинет',
             'user' => (isset($_COOKIE['user']))?($_COOKIE['user']):"anonimus",
             'userstatus' => (isset($_COOKIE['userstatus'])) ? ($_COOKIE['userstatus']) : "anonimus",
-            'email' => $this->user->email
+            'email' => $this->user->email,
+            'orders' => $this->user->getOrders()
         ];
     }
 }

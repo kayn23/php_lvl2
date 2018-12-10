@@ -59,6 +59,24 @@ class M_User
         setcookie('order_id','',-20, '/');
     }
 
+    public function getOrders() {
+        $user_id = $this->id;
+        $orders = DB::getRows("SELECT 
+                                      o.id,o.created_at,s.status,
+                                      (SELECT sum(b.amount*p.price) 
+                                        FROM basket as b JOIN products as p 
+                                        WHERE b.product_id=p.id AND b.order_id=o.id) as price
+                                      FROM 
+                                      orders as o 
+                                      JOIN 
+                                      status_order as s 
+                                      WHERE o.status=s.id 
+                                      AND 
+                                      o.user_id='$user_id'
+                                      AND o.status<>0");
+        return $orders;
+    }
+
 
     /**
      * @param $name
