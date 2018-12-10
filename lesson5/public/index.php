@@ -29,9 +29,9 @@ $action .= (isset($_GET['action'])) ? $_GET['action'] : 'index';
 if (isset($_GET['c'])) {
     switch ($_GET['c']) {
         default:
-            $controller = new C_Page($twig);
+            $controller = new C_User($twig);
     }
 } else {
-    $controller = new C_Page($twig);
+    $controller = new C_User($twig);
 }
 $controller->Request($action);

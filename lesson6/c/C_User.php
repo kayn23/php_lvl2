@@ -6,7 +6,7 @@
  * Time: 15:28
  */
 
-class C_Page extends C_Controller
+class C_User extends C_Controller
 {
     private $user;
     public function __construct()
@@ -18,7 +18,8 @@ class C_Page extends C_Controller
         $this->page = 'main.twig';
         $this->var = [
             'title' => 'Главная',
-            'user' => (isset($_COOKIE['user']))?($_COOKIE['user']):"anonimus"
+            'user' => (isset($_COOKIE['user']))?($_COOKIE['user']):"anonimus",
+            'userstatus' => (isset($_COOKIE['userstatus'])) ? ($_COOKIE['userstatus']) : "anonimus"
         ];
     }
 
@@ -45,6 +46,7 @@ class C_Page extends C_Controller
         $this->var = [
             'title' => 'Личный кабинет',
             'user' => (isset($_COOKIE['user']))?($_COOKIE['user']):"anonimus",
+            'userstatus' => (isset($_COOKIE['userstatus'])) ? ($_COOKIE['userstatus']) : "anonimus",
             'email' => $this->user->email
         ];
     }

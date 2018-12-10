@@ -10,7 +10,7 @@ class M_User
 {
     public $name;
     public $email;
-    public $hobby;
+    public $status;
     public function __construct()
     {
 //        include_once '../m/DB.php';
@@ -18,7 +18,7 @@ class M_User
             $user = $this->getInfoUser($_COOKIE['user']);
             $this->name = $user['name'];
             $this->email = $user['email'];
-//            $this->hobby = $user['hobby'];
+            $this->getStatus($user['name']);
         }
     }
 
@@ -30,6 +30,7 @@ class M_User
     public function autorization($login, $password)
     {
         if ($this->checkUser($login, $password) !== false) {
+            $this->getStatus($login);
             setcookie('user', $login, time() + 3600*24*7*365, '/');
             return true;
         } else {
@@ -43,6 +44,7 @@ class M_User
            'pass'=>md5($password),
            'email'=>$email
         ]);
+        $this->getStatus($login);
         setcookie('user', $login, time() + 3600*24*7*365, '/');
     }
 
@@ -51,6 +53,7 @@ class M_User
      */
     public function logout() {
         setcookie('user', '', -20, '/');
+        setcookie('userstatus','',-20,'/');
     }
 
 
@@ -60,7 +63,7 @@ class M_User
      * @return bool
      */
     private function checkUser($name, $pass) {
-        $user = DB::select('users',[],"name='$name'",true);
+        $user = DB::select('users',[],"name='".$name."'",true);
         if ($user['pass'] == md5($pass)) {
             return $user;
         } else {
@@ -73,7 +76,9 @@ class M_User
      * @return mixed
      */
     private function getInfoUser($name) {
-        return DB::select('users',[],"name='$name'",true);
+        $user = DB::select('users',[],"name='".$name."'",true);
+        $user['status'] = DB::select('user_role',['role'],'user_id='.$user['id'],true)['role'];
+        return $user;
     }
 
     public function checkLogin() {
@@ -82,5 +87,11 @@ class M_User
         } else {
             return false;
         }
+    }
+
+    private function getStatus($name) {
+        $user = DB::select('users',['id'],"name='$name'",true);
+        $userStatus = DB::select('user_role',['role'],'user_id='.$user['id'],true)['role'];
+        setcookie('userstatus',$userStatus,time() + 3600*24*7*365,'/');
     }
 }

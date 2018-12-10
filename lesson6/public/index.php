@@ -16,7 +16,7 @@ $action .= (isset($_GET['action'])) ? $_GET['action'] : 'index';
 if (isset($_GET['c'])) {
     switch ($_GET['c']) {
         case 'page':
-            $controller = new C_Page();
+            $controller = new C_User();
             break;
         default:
             $controller = new C_Book();
