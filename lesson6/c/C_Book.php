@@ -24,15 +24,12 @@ class C_Book extends C_Controller
         //todo cooke in model
         if (isset($_COOKIE['user'])) {
             $this->user = new M_User();
-            if (!isset($_COOKIE['basket'])) {
-                setcookie('order_id',$this->basket->getBasketId($this->user->id),
-                    time() + 3600*24*7*365, '/');
-            }
-        } else {
-            if (!isset($_COOKIE['basket'])) {
-                setcookie('order_id',$this->basket->createBasket('null'),
-                    time() + 3600*24*7*365, '/');
-            }
+            setcookie('order_id', $this->basket->getBasketId($this->user->id),
+                time() + 3600 * 24 * 7 * 365, '/');
+        }
+        if (!isset($_COOKIE['order_id'])) {
+            setcookie('order_id', $this->basket->createBasket('null'),
+                time() + 3600 * 24 * 7 * 365, '/');
         }
     }
 
@@ -74,7 +71,8 @@ class C_Book extends C_Controller
     }
 
     //todo настроить удаление только для админа
-    public function action_delete() {
+    public function action_delete()
+    {
         if ($this->book->delete($_GET['id']) == 1) {
             $this->var['action'] = 'Книга удалена';
         } else {

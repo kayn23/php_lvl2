@@ -56,7 +56,7 @@ class M_User
     public function logout() {
         setcookie('user', '', -20, '/');
         setcookie('userstatus','',-20,'/');
-        setcookie('basket_id','',-20, '/');
+        setcookie('order_id','',-20, '/');
     }
 
 

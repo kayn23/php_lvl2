@@ -20,7 +20,8 @@ class M_Basket
         if (gettype($basket) != 'array') {
             return $this->createBasket($user_id);
         } elseif (isset($_COOKIE['order_id']) and ($_COOKIE['order_id'] != $basket['id'])) {
-            DB::update('basket',['order_id'=>$basket['id']],'order_id='.$basket['id']);
+
+            DB::update('basket',['order_id'=>$basket['id']],'order_id='.$_COOKIE['order_id']);
             DB::delete('orders','id='.$_COOKIE['order_id']);
         }
         return $basket['id'];
