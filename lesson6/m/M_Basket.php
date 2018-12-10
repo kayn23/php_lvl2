@@ -12,19 +12,27 @@ class M_Basket
     public function createBasket($user_id)
     {
         DB::insert('orders', ['user_id' => $user_id, 'status' => '0']);
-        return DB::getPDO()->lastInsertId();
+        $order_id = DB::getPDO()->lastInsertId();
+        setcookie('order_id', $order_id,
+            time() + 3600 * 24 * 7 * 365, '/');
     }
 
     public function getBasketId($user_id)
     {
         $basket = DB::select('orders', [], "user_id='$user_id' AND status='0'", true);
-        if (gettype($basket) != 'array') {
-            return $this->createBasket($user_id);
+        if ((gettype($basket) != 'array') and isset($_COOKIE['order_id'])) {
+//            dd('точка');
+            DB::update('orders',['user_id'=>$user_id],"id='".$_COOKIE['order_id']."'");
+            $basket['id']=$_COOKIE['order_id'];
+        } elseif (gettype($basket) != 'array') {
+            $this->createBasket($user_id);
         } elseif (isset($_COOKIE['order_id']) and ($_COOKIE['order_id'] != $basket['id'])) {
 
             DB::update('basket', ['order_id' => $basket['id']], 'order_id=' . $_COOKIE['order_id']);
             DB::delete('orders', 'id=' . $_COOKIE['order_id']);
         }
+        setcookie('order_id', $basket['id'],
+            time() + 3600 * 24 * 7 * 365, '/');
         return $basket['id'];
     }
 
@@ -37,6 +45,10 @@ class M_Basket
         ]);
     }
 
+    /**
+     * вывод всех записей из корзины
+     * @return array
+     */
     public function showBasket()
     {
         $id = $_COOKIE['order_id'];
@@ -44,6 +56,12 @@ class M_Basket
         return $products;
     }
 
+    /**
+     * Удаление позиции из корзины
+     * @param $id
+     * @param $order_id
+     * @return bool
+     */
     public function delete($id, $order_id)
     {
         if (DB::delete('basket', "order_id='$order_id' and product_id='$id'") == 1) {
@@ -51,5 +69,30 @@ class M_Basket
         } else {
             return false;
         }
+    }
+
+    /**
+     * оформление заказа
+     * @param $order_id
+     * @return bool|false|string
+     */
+    public function checkout($order_id)
+    {
+        $date = date('Y-m-d H:i:s');
+        $user_id = DB::select('users',[],"name='".$_COOKIE['user']."'",true)['id'];
+        if (DB::update('orders',['status'=>'1','created_at'=>$date],"id='$order_id'") == 1) {
+            $this->createBasket($user_id);
+            return $date;
+        } else {
+            return false;
+        }
+    }
+
+    public function summa($arr = []) {
+        $sum = 0;
+        foreach ($arr as $item) {
+            $sum += $item['summ'];
+        }
+        return $sum;
     }
 }

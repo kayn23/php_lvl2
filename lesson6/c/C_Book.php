@@ -21,16 +21,13 @@ class C_Book extends C_Controller
             'user' => (isset($_COOKIE['user'])) ? ($_COOKIE['user']) : "anonimus",
             'userstatus' => (isset($_COOKIE['userstatus'])) ? ($_COOKIE['userstatus']) : "anonimus",
         ];
-        //todo cooke in model
         if (isset($_COOKIE['user'])) {
             $this->user = new M_User();
             //todo настроить слияние корзин
-            setcookie('order_id', $this->basket->getBasketId($this->user->id),
-                time() + 3600 * 24 * 7 * 365, '/');
+            $this->basket->getBasketId($this->user->id);
         }
         if (!isset($_COOKIE['order_id'])) {
-            setcookie('order_id', $this->basket->createBasket('null'),
-                time() + 3600 * 24 * 7 * 365, '/');
+            $this->basket->createBasket('null');
         }
     }
 

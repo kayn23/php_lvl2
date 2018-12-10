@@ -46,6 +46,7 @@ $('.js-reg').click(function(){
     $('.js-reg').hide();
     $('.js-login').hide();
     $('.js-regin').show();
+    $('.js-regin').css('display',"block");
     $('.js-log').show();
 });
 

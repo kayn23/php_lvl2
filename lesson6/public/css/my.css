@@ -118,12 +118,28 @@
     width: 200px;
 }
 
-.cl-finx {
+.cl-fix {
     clear: both;
 }
 
 .basket {
     padding: 15px 50px;
+}
+.basket-login {
+    text-align: center;
+    background: #7a839c;
+}
+
+.basket--btn {
+    display: block;
+    margin: 15px auto 0;
+    width: 200px;
+    text-align: center;
+    border-color: #fff;
+}
+
+.basket--btn:hover {
+    border-color: #f2795a;
 }
 
 .b_table {

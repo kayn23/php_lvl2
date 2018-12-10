@@ -92,6 +92,10 @@ class M_User
         }
     }
 
+    /**
+     * возвращает роль пользователя
+     * @param $name
+     */
     private function getStatus($name) {
         $user = DB::select('users',['id'],"name='$name'",true);
         $userStatus = DB::select('user_role',['role'],'user_id='.$user['id'],true)['role'];
