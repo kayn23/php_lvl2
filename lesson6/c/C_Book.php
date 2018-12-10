@@ -15,6 +15,7 @@ class C_Book extends C_Controller
     public function __construct()
     {
         $this->book = new M_Book();
+        $this->basket = new M_Basket();
         $this->var = [
             'title' => 'Главная',
             'user' => (isset($_COOKIE['user'])) ? ($_COOKIE['user']) : "anonimus",
@@ -22,10 +23,19 @@ class C_Book extends C_Controller
         ];
         if (isset($_COOKIE['user'])) {
             $this->user = new M_User();
-            $this->basket = new M_Basket();
-            setcookie('basket_id',$this->basket->getBasketId($this->user->id),
+            if (!isset($_COOKIE['basket'])) {
+                setcookie('basket_id',$this->basket->getBasketId($this->user->id),
                     time() + 3600*24*7*365, '/');
+            }
+        } else {
+            if (!isset($_COOKIE['basket'])) {
+                setcookie('basket_id',$this->basket->createBasket('null'),
+                    time() + 3600*24*7*365, '/');
+            }
         }
+
+
+
     }
 
     public function action_index()
