@@ -77,4 +77,42 @@ class C_Basket extends C_Controller
             }
         }
     }
+
+    //Админская часть
+    public function action_showOrders()
+    {
+        $this->page = 'admin_order.twig';
+        $this->var['title'] = 'Заказы';
+        $this->var['orders'] = $this->basket->getOrders();
+    }
+
+    public function action_showOneOrder()
+    {
+        $order_id = validation($_GET['id']);
+        $this->page = 'admin_one_order.twig';
+        $order = $this->basket->getOneOrder($order_id);
+        $this->var['product'] = $order['products'];
+        $this->var['order_user'] = $order['user'];
+        $this->var['summa'] = $this->basket->summa($this->var['product']);
+    }
+
+    public function action_acceptOrder()
+    {
+        $id = validation($_GET['id']);
+        $this->basket->acceptOrder($id);
+        header('Location: http://localhost/php2/lesson6/public/index.php?c=basket&action=showOrders');
+    }
+
+    public function action_closeOrder()
+    {
+        $id = validation($_GET['id']);
+        $this->basket->closeOrder($id);
+        header('Location: http://localhost/php2/lesson6/public/index.php?c=basket&action=showOrders');
+    }
+
+    public function action_deleteOrder()
+    {
+        $id = validation($_GET['id']);
+
+    }
 }

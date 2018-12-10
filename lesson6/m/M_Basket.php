@@ -78,7 +78,7 @@ class M_Basket
      */
     public function checkout($order_id)
     {
-        $date = date('Y-m-d H:i:s');
+        $date = $this->date();
         $user_id = DB::select('users',[],"name='".$_COOKIE['user']."'",true)['id'];
         if (DB::update('orders',['status'=>'1','created_at'=>$date],"id='$order_id'") == 1) {
             $this->createBasket($user_id);
@@ -86,6 +86,58 @@ class M_Basket
         } else {
             return false;
         }
+    }
+
+    //Админская часть
+
+    /**
+     * Возвращает списов оформленных заказов
+     * @return array
+     */
+    public function getOrders() {
+        $orders = [];
+        $orders['new'] = DB::getRows("SELECT o.id,u.name,u.email,o.created_at FROM orders as o JOIN users as u WHERE o.user_id = u.id AND o.status = 1 ORDER BY o.created_at"); //заказы неподтвержденные
+        $orders['progress'] = DB::getRows("SELECT o.id,u.name,u.email,o.accepted_at FROM orders as o JOIN users as u WHERE o.user_id = u.id AND o.status = 2 ORDER BY o.accepted_at"); //заказы подтвержденные
+        return $orders;
+    }
+
+    public function getOneOrder($order_id)
+    {
+        $order['user'] = DB::getRows("SELECT u.name,u.email FROM users AS u JOIN orders as o WHERE u.id=o.user_id AND o.id='$order_id'")[0];
+        $order['products'] = DB::getRows("SELECT b.id,b.order_id,b.product_id,b.amount,p.price*b.amount as summ,p.name,(SELECT s.status FROM orders as o JOIN status_order as s WHERE o.id=b.order_id and s.id=o.status) as status FROM basket as b join products as p where b.order_id='$order_id' and p.id=b.product_id");
+        return $order;
+    }
+
+    /**
+     * Изменяет статус заказа на 2 - выполняется
+     * @param $order_id
+     */
+    public function acceptOrder($order_id)
+    {
+        DB::update('orders',['status'=>'2','accepted_at'=>$this->date()],"id='$order_id'");
+    }
+
+    /**
+     * Изменяет статус заказа на 3 - выполнен
+     * @param $order_id
+     */
+    public function closeOrder($order_id)
+    {
+        DB::update('orders',['status'=>'3','closed_at'=>$this->date()],"id='$order_id'");
+    }
+
+    /**
+     * Удаляет заказ
+     * @param $order_id
+     */
+    public function deleteOrder($order_id)
+    {
+        DB::delete('orders',"id='$order_id'");
+    }
+
+    private function date()
+    {
+        return date('Y-m-d H:i:s');
     }
 
     public function summa($arr = []) {
