@@ -27,6 +27,9 @@ class C_Basket extends C_Controller
 
     }
 
+    /**
+     * Добавление товара в корзину
+     */
     public function action_addBasket()
     {
         $id = validation($_GET['id']); //id книги
@@ -44,6 +47,9 @@ class C_Basket extends C_Controller
         $this->var['book_id'] = $id;
     }
 
+    /**
+     * Отображение корзины для пользователя
+     */
     public function action_showBasket()
     {
         $this->page = 'basket.twig';
@@ -52,6 +58,9 @@ class C_Basket extends C_Controller
         $this->var['summa'] = $this->basket->summa($this->var['products']);
     }
 
+    /**
+     * Удаление товара из корзины
+     */
     public function action_delete()
     {
         $id = validation($_GET['id']);
@@ -60,6 +69,9 @@ class C_Basket extends C_Controller
         header('Location: http://localhost/php2/lesson6/public/index.php?c=basket&action=showBasket');
     }
 
+    /**
+     * Оформление заказа
+     */
     public function action_checkout()
     {
         if (!isset($_COOKIE['user'])) {
@@ -79,6 +91,10 @@ class C_Basket extends C_Controller
     }
 
     //Админская часть
+
+    /**
+     * Показать список всех заказов
+     */
     public function action_showOrders()
     {
         $this->page = 'admin_order.twig';
@@ -86,6 +102,9 @@ class C_Basket extends C_Controller
         $this->var['orders'] = $this->basket->getOrders();
     }
 
+    /**
+     * Отобразить конкретный заказ
+     */
     public function action_showOneOrder()
     {
         $order_id = validation($_GET['id']);
@@ -96,6 +115,9 @@ class C_Basket extends C_Controller
         $this->var['summa'] = $this->basket->summa($this->var['product']);
     }
 
+    /**
+     * Переместить заказ в выполняется
+     */
     public function action_acceptOrder()
     {
         $id = validation($_GET['id']);
@@ -103,6 +125,9 @@ class C_Basket extends C_Controller
         header('Location: http://localhost/php2/lesson6/public/index.php?c=basket&action=showOrders');
     }
 
+    /**
+     * Выполнить заказ
+     */
     public function action_closeOrder()
     {
         $id = validation($_GET['id']);
@@ -110,6 +135,9 @@ class C_Basket extends C_Controller
         header('Location: http://localhost/php2/lesson6/public/index.php?c=basket&action=showOrders');
     }
 
+    /**
+     * Удалить заказ
+     */
     public function action_deleteOrder()
     {
         $id = validation($_GET['id']);

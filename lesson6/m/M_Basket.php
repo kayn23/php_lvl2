@@ -101,6 +101,11 @@ class M_Basket
         return $orders;
     }
 
+    /**
+     * Вернуть информацию по одному заказу
+     * @param $order_id
+     * @return mixed
+     */
     public function getOneOrder($order_id)
     {
         $order['user'] = DB::getRows("SELECT u.name,u.email FROM users AS u JOIN orders as o WHERE u.id=o.user_id AND o.id='$order_id'")[0];
