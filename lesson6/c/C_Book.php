@@ -24,6 +24,7 @@ class C_Book extends C_Controller
         //todo cooke in model
         if (isset($_COOKIE['user'])) {
             $this->user = new M_User();
+            //todo настроить слияние корзин
             setcookie('order_id', $this->basket->getBasketId($this->user->id),
                 time() + 3600 * 24 * 7 * 365, '/');
         }

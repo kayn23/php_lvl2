@@ -46,4 +46,11 @@ class C_Basket extends C_Controller
         $this->page = 'basket.twig';
         $this->var['products'] = $this->basket->showBasket();
     }
+
+    public function action_delete() {
+        $id = validation($_GET['id']);
+        $order_id = $_COOKIE['order_id'];
+        $this->basket->delete($id,$order_id);
+        header('Location: http://localhost/php2/lesson6/public/index.php?c=basket&action=showBasket');
+    }
 }
