@@ -227,3 +227,9 @@
 .a_table--delete {
     width: 5%;
 }
+
+.a_table--input {
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 18px;
+}
