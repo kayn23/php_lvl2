@@ -2,6 +2,17 @@
     padding: 15px 50px;
 }
 
+.loginPage--link {
+    font-size: 18px;
+    color: black;
+    padding: 10px 0;
+    margin: 10px 0;
+}
+
+.loginPage--link:hover {
+    color: red;
+}
+
 .loginPage--input {
     margin: 0 auto 10px;
     /*width: 90%;*/
@@ -100,4 +111,14 @@
 .onebook img {
     float: left;
     margin-right: 10px;
+}
+
+.btn-position_onebook {
+    display: block;
+    margin: 30px 0;
+    width: 200px;
+}
+
+.cl-finx {
+    clear: both;
 }

@@ -19,11 +19,20 @@ class M_Basket
         $basket = DB::select('orders', [], "user_id='$user_id' AND status='0'", true);
         if (gettype($basket) != 'array') {
             return $this->createBasket($user_id);
-        } elseif (isset($_COOKIE['basket_id']) and ($_COOKIE['basket_id'] != $basket['id'])) {
+        } elseif (isset($_COOKIE['order_id']) and ($_COOKIE['order_id'] != $basket['id'])) {
             DB::update('basket',['order_id'=>$basket['id']],'order_id='.$basket['id']);
-            DB::delete('orders','id='.$_COOKIE['basket_id']);
+            DB::delete('orders','id='.$_COOKIE['order_id']);
         }
         return $basket['id'];
+    }
+
+    public function addProduct($idProduct,$idBasket)
+    {
+        return DB::insert('basket', [
+                        'order_id' => $idBasket,
+                        'product_id' => $idProduct,
+                        'amount' => 1
+                    ]);
     }
 
 }

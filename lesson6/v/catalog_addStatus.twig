@@ -1,0 +1,20 @@
+{% extends 'index.twig' %}
+{% block sidebar %}
+    {% include 'sidebar.twig' %}
+{% endblock %}
+
+{% block login %}
+    {% include 'autorization.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <header class="main--header">
+            <h1 class="main--caption">Каталог</h1>
+        </header>
+        <div class="loginPage">
+            <h3>{{ action }}</h3>
+            <a href="?c=book&action=onebook&id={{ book_id }}" class="loginPage--link">Назад</a>
+        </div>
+    </div>
+{% endblock %}

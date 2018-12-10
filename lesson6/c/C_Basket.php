@@ -14,9 +14,31 @@ class C_Basket extends C_Controller
     public function __construct()
     {
         $this->basket = new M_Basket();
+        $this->page = 'catalog_addStatus.twig';
+        $this->var = [
+            'title' => 'Каталог',
+            'user' => (isset($_COOKIE['user'])) ? ($_COOKIE['user']) : "anonimus",
+            'userstatus' => (isset($_COOKIE['userstatus'])) ? ($_COOKIE['userstatus']) : "anonimus",
+        ];
     }
 
     function action_index() {
 
+    }
+
+    public function action_addBasket() {
+        $id = validation($_GET['id']); //id книги
+        $idOrder = $_COOKIE['order_id']; //id корзины
+        $position = DB::select('basket',[],"product_id='$id' and order_id='$idOrder'",true);
+        if (gettype($position) == 'array') {
+            if (DB::get("UPDATE basket SET amount=amount+1 WHERE id='".$position['id']."'")) {
+                $this->var['action'] = 'Товар добавлен в корзину';
+            }
+        } elseif ($this->basket->addProduct($id,$idOrder)) {
+            $this->var['action'] = 'Товар добавлен в корзину';
+        } else {
+            $this->var['action'] = 'Ошибка при добавлении товара';
+        }
+        $this->var['book_id'] = $id;
     }
 }

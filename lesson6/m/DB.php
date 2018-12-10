@@ -3,6 +3,7 @@
 /**
  * Class DB
  */
+
 //include "function.php";
 class DB
 {
@@ -52,9 +53,13 @@ class DB
         return self::sql($sql)->fetchAll();
     }
 
-    public static function fetRow($sql)
+    public static function getRow($sql)
     {
         return self::sql($sql)->fetch();
+    }
+
+    public static function get($sql){
+        return self::sql($sql)->rowCount();
     }
 
     /**
@@ -63,7 +68,7 @@ class DB
      * @param array $arg
      * @return array
      */
-    public static function select($table, $arg = [], $where = '',$fetch = false)
+    public static function select($table, $arg = [], $where = '', $fetch = false)
     {
         if (count($arg) == 0) {
             $arg = '*';
@@ -74,11 +79,11 @@ class DB
             }
             $arg = substr($args, 0, -1);
         }
-        $where = ($where != '')?"WHERE $where":'';
+        $where = ($where != '') ? "WHERE $where" : '';
         $sql = "SELECT $arg FROM $table $where";
         $stmt = self::getPDO()->prepare($sql);
         $stmt->execute();
-        return (!$fetch)?$stmt->fetchAll():$stmt->fetch();
+        return (!$fetch) ? $stmt->fetchAll() : $stmt->fetch();
     }
 
     /**
@@ -101,7 +106,8 @@ class DB
             $stmt->execute();
             return $stmt->rowCount();
         } catch (PDOException $e) {
-            self::checkError($e);
+//            self::checkError($e);
+            return false;
         }
     }
 
@@ -111,20 +117,22 @@ class DB
      * @param string $where
      * @return int
      */
-    public static function update($table, $arg = [], $where = ''){
+    public static function update($table, $arg = [], $where = '')
+    {
         #UPDATE FROM table SET поля where
         $param = '';
         foreach ($arg as $key => $elem) {
             $param .= "`$key`='$elem',";
         }
-        $param = substr($param,0,-1);
-        $where = ($where != '')?"WHERE $where":'';
+        $param = substr($param, 0, -1);
+        $where = ($where != '') ? "WHERE $where" : '';
         $stmt = self::getPDO()->prepare("UPDATE $table SET $param $where");
         try {
             $stmt->execute();
             return $stmt->rowCount();
         } catch (PDOException $e) {
-            self::checkError($e);
+//            self::checkError($e);
+            return false;
         }
     }
 
@@ -133,14 +141,16 @@ class DB
      * @param string $where
      * @return int
      */
-    public static function delete($table, $where = '') {
-        $where = ($where != '')?"WHERE $where":'';
+    public static function delete($table, $where = '')
+    {
+        $where = ($where != '') ? "WHERE $where" : '';
         $stmt = self::getPDO()->prepare("DELETE FROM $table $where");
         try {
             $stmt->execute();
             return $stmt->rowCount();
         } catch (PDOException $e) {
-            self::checkError($e);
+            //self::checkError($e);
+            return false;
         }
     }
 
@@ -161,4 +171,5 @@ class DB
         }
     }
 }
+
 ?>

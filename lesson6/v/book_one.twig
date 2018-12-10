@@ -17,6 +17,10 @@
             <p class="onebook--price"><span>Цена:</span> {{ book.price }}</p>
             <h3>Описание:</h3>
             <p>{{ book.description }}</p>
+            <div class="cl-finx"></div>
+            <a href="?c=basket&action=addBasket&id={{ book.id }}" class="btn btn-position_onebook">
+                <i class="fas fa-plus"></i></span>Добавить книгу
+            </a>
             <a href="?c=book&action=delete&id={{ book.id }}" class="onebook--delete">Удалить</a>
         </div>
     </div>
