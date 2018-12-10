@@ -24,22 +24,24 @@
                         Удалить
                     </div>
                 </div>
-                <div class="b_table--item">
-                    <div class="b_table--name">{{ key.name }}</div>
-                    <div class="b_table--amount">
-                        <div class="b_table--amount-btn js-basket-plus">
-                            <a href="" class="b_table--link"> <i class="fas fa-plus-circle"></i></a>
+                {% for key in products %}
+                    <div class="b_table--item">
+                        <div class="b_table--name">{{ key.name }}</div>
+                        <div class="b_table--amount">
+                            <div class="b_table--amount-btn js-basket-plus">
+                                <a href="" class="b_table--link"> <i class="fas fa-plus-circle"></i></a>
+                            </div>
+                            <p>{{ key.amount }}</p>
+                            <div class="b_table--amount-btn js-basket-minus">
+                                <a href="" class="b_table--link"><i class="fas fa-minus-circle"></i></a>
+                            </div>
                         </div>
-                        <p>{{ key.amount }}</p>
-                        <div class="b_table--amount-btn js-basket-minus">
-                            <a href="" class="b_table--link"><i class="fas fa-minus-circle"></i></a>
+                        <div class="b_table--price">{{ key.summ }}</div>
+                        <div class="b_table--delete">
+                            <a href="" class="b_table--link"><i class="fas fa-trash"></i></a>
                         </div>
                     </div>
-                    <div class="b_table--price">{{ key.summ }}</div>
-                    <div class="b_table--delete">
-                        <a href="" class="b_table--link"><i class="fas fa-trash"></i></a>
-                    </div>
-                </div>
+                {% endfor %}
                 Lorem ipsum dolor sit amet.
             </div>
         </div>

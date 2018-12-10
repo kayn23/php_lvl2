@@ -35,4 +35,9 @@ class M_Basket
                     ]);
     }
 
+    public function showBasket() {
+        $id = $_COOKIE['order_id'];
+        $products = DB::getRows("SELECT b.id,b.order_id,b.product_id,b.amount,p.price*b.amount as summ,p.name FROM basket as b join products as p where b.order_id='$id' and p.id=b.product_id");
+        return $products;
+    }
 }

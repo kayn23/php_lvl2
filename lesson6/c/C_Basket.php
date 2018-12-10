@@ -44,10 +44,6 @@ class C_Basket extends C_Controller
 
     public function action_showBasket() {
         $this->page = 'basket.twig';
-        $this->var['key'] = [
-            'name' => 'name',
-            'amount' => '2888',
-            'summ' => '2333'
-        ];
+        $this->var['products'] = $this->basket->showBasket();
     }
 }
