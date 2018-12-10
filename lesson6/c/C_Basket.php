@@ -41,4 +41,13 @@ class C_Basket extends C_Controller
         }
         $this->var['book_id'] = $id;
     }
+
+    public function action_showBasket() {
+        $this->page = 'basket.twig';
+        $this->var['key'] = [
+            'name' => 'name',
+            'amount' => '2888',
+            'summ' => '2333'
+        ];
+    }
 }
