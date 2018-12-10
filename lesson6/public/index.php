@@ -18,6 +18,9 @@ if (isset($_GET['c'])) {
         case 'page':
             $controller = new C_User();
             break;
+        case 'basket':
+            $controller = new C_Basket();
+            break;
         default:
             $controller = new C_Book();
     }

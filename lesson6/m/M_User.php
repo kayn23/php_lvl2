@@ -8,6 +8,7 @@
 
 class M_User
 {
+    public $id;
     public $name;
     public $email;
     public $status;
@@ -16,6 +17,7 @@ class M_User
 //        include_once '../m/DB.php';
         if (isset($_COOKIE['user'])) {
             $user = $this->getInfoUser($_COOKIE['user']);
+            $this->id = $user['id'];
             $this->name = $user['name'];
             $this->email = $user['email'];
             $this->getStatus($user['name']);

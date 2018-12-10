@@ -10,6 +10,7 @@ class C_Book extends C_Controller
 {
     private $book;
     private $user;
+    private $basket;
 
     public function __construct()
     {
@@ -21,6 +22,9 @@ class C_Book extends C_Controller
         ];
         if (isset($_COOKIE['user'])) {
             $this->user = new M_User();
+            $this->basket = new M_Basket();
+            setcookie('basket_id',$this->basket->getBasketId($this->user->id),
+                    time() + 3600*24*7*365, '/');
         }
     }
 
@@ -28,6 +32,7 @@ class C_Book extends C_Controller
     {
         $this->page = 'main.twig';
         $this->var['books'] = $this->book->getAllBooks();
+
     }
 
     /**
