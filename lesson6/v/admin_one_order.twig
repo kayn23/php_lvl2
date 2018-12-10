@@ -1,0 +1,45 @@
+{% extends 'index.twig' %}
+{% block sidebar %}
+    {% include 'sidebar.twig' %}
+{% endblock %}
+
+{% block login %}
+    {% include 'autorization.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <header class="main--header">
+            <h1 class="main--caption">Заказ номер {{ product[0].order_id }}</h1>
+        </header>
+        <div class="basket">
+            <div class="order_user">
+                <h3>Пользователь: {{ order_user.name }}</h3>
+                <h3>Email: {{ order_user.email }}</h3>
+            </div>
+            <div class="b_table">
+                <div class="b_table--item b_table--item-bolt">
+                    <div class="b_table--name">Название</div>
+                    <div class="b_table--amount">
+                        <p>Количество</p>
+                    </div>
+                    <div class="b_table--price">Стоимость</div>
+                </div>
+                {% for key in product %}
+                    <div class="b_table--item">
+                        <div class="b_table--name">{{ key.name }}</div>
+                        <div class="b_table--amount">{{ key.amount }}</div>
+                        <div class="b_table--price">{{ key.summ }}</div>
+                    </div>
+                {% endfor %}
+                Общая стоимость: {{ summa }} <br>
+                Статус: {{ product[0].status }}
+            </div>
+            <div class="basket--btn_conteiner">
+                <a href="?c=basket&action=acceptOrder&id={{ product[0].order_id }}" class="btn basket--btn basket--btn-one">Подтвердить</a>
+                <a href="?c=basket&action=closeOrder&id={{ product[0].order_id }}" class="btn basket--btn basket--btn-one">Выполнить</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

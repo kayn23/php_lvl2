@@ -138,8 +138,16 @@
     border-color: #fff;
 }
 
+.basket--btn_conteiner {
+    display: flex;
+}
+
 .basket--btn:hover {
     border-color: #f2795a;
+}
+
+.basket--btn-one {
+    width: 49%;
 }
 
 .b_table {
@@ -182,13 +190,40 @@
     min-width: 40px;
 }
 
-.b_table--link {
+.b_table--link,
+.a_table--link {
     display: block;
     text-align: center;
     color: black;
     transition: 0s;
 }
 
+.a_table--link {
+    text-align: left;
+}
+
+.a_table--link:hover,
 .b_table--link:hover {
     color: red;
+}
+
+.a_table {
+    border: 2px solid #2f364a;
+    padding: 5px;
+}
+
+.a_table--item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #515b6e;
+}
+
+.a_table--item > * {
+    width: 21%;
+}
+
+.a_table--delete {
+    width: 5%;
 }

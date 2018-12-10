@@ -1,0 +1,85 @@
+{% extends 'index.twig' %}
+{% block sidebar %}
+    {% include 'sidebar.twig' %}
+{% endblock %}
+
+{% block login %}
+    {% include 'autorization.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <header class="main--header">
+            <h1 class="main--caption">Список заказов</h1>
+        </header>
+        <div class="basket">
+            <h2>Новые заказы</h2>
+            <div class="a_table">
+                <div class="a_table--item a_table--item-bolt">
+                    <div class="a_table--name">Номер заказа</div>
+                    <div class="a_table--amount">Владелец заказа</div>
+                    <div class="a_table--price">Время создания</div>
+                    <div class="a_table--price">Подтверждение</div>
+                    <div class="a_table--price">Закрыть</div>
+                    <div class="a_table--delete">
+                        Удалить
+                    </div>
+                </div>
+                {% for key in orders.new %}
+                    <div class="a_table--item">
+                        <div class="a_table--name">
+                            <a href="?c=basket&action=showOneOrder&id={{ key.id }}" class="a_table--link">{{ key.id }}</a>
+                        </div>
+                        <div class="a_table--amount">{{ key.name }} : {{ key.email }}</div>
+                        <div class="a_table--price">{{ key.created_at }}</div>
+                        <div class="a_table--price">
+                            <a href="?c=basket&action=acceptOrder&id={{ key.id }}" class="a_table--link">
+                                Подтвердить</a>
+                        </div>
+                        <div class="a_table--price">
+                            <a href="?c=basket&action=closeOrder&id={{ key.id }}" class="a_table--link">Выполнить</a>
+                        </div>
+                        <div class="a_table--delete">
+                            <a href="?c=basket&action=deleteOrder&id={{ key.id }}" class="a_table--link"><i
+                                        class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <h2>Заказы в стадии выполнения</h2>
+            <div class="a_table">
+                <div class="a_table--item a_table--item-bolt">
+                    <div class="a_table--name">Номер заказа</div>
+                    <div class="a_table--amount">Владелец заказа</div>
+                    <div class="a_table--price">Время создания</div>
+                    <div class="a_table--price">Подтверждение</div>
+                    <div class="a_table--price">Закрыть</div>
+                    <div class="a_table--delete">
+                        Удалить
+                    </div>
+                </div>
+                {% for key in orders.progress %}
+                    <div class="a_table--item">
+                        <div class="a_table--name">
+                            <a href="?c=basket&action=showOneOrder&id={{ key.id }}" class="a_table--link">{{ key.id }}</a>
+                        </div>
+                        <div class="a_table--amount">{{ key.name }} : {{ key.email }}</div>
+                        <div class="a_table--price">{{ key.accepted_at }}</div>
+                        <div class="a_table--price">
+                            <a href="?c=basket&action=acceptOrder&id={{ key.id }}" class="a_table--link">
+                                Обновить</a>
+                        </div>
+                        <div class="a_table--price">
+                            <a href="?c=basket&action=closeOrder&id={{ key.id }}" class="a_table--link">Выполнить</a>
+                        </div>
+                        <div class="a_table--delete">
+                            <a href="?c=basket&action=deleteOrder&id={{ key.id }}" class="a_table--link"><i
+                                        class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
