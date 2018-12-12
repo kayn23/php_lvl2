@@ -1,0 +1,31 @@
+<div class="sidebar sidebar-position">
+    <div class="open_panel js-sidebar-toggle"><i class="fas fa-ellipsis-v"></i></div>
+        {% if userstatus == 'admin' %}
+            <a href="?c=book&action=addbook" class="btn btn-position_sidebar_left"><span class="btn--plus">
+                 <i class="fas fa-plus"></i></span>Добавить книгу
+            </a>
+        {% endif %}
+    <div class="line"></div>
+    {% if userstatus == 'admin' %}
+        {% include 'sidebar_admin.twig' %}
+    {% else %}
+        {% include 'sidebar_menu.twig' %}
+    {% endif %}
+    <div class="line"></div>
+    <div class="last_comment">
+        <div class="last_comment--item"><span class="last_comment--clock"><i
+                        class="far fa-clock fa-flip-horizontal"></i></span>
+            <div class="last_comment--text">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate, a.</p>
+                <p class="last_comment--text-transper">24 минуты назад</p>
+            </div>
+        </div>
+        <div class="last_comment--item"><span class="last_comment--clock"><i
+                        class="far fa-clock fa-flip-horizontal"></i></span>
+            <div class="last_comment--text">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate, a.</p>
+                <p class="last_comment--text-transper">24 минуты назад</p>
+            </div>
+        </div>
+    </div>
+</div>

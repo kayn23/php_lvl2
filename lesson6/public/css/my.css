@@ -1,0 +1,235 @@
+.loginPage {
+    padding: 15px 50px;
+}
+
+.loginPage--link {
+    font-size: 18px;
+    color: black;
+    padding: 10px 0;
+    margin: 10px 0;
+}
+
+.loginPage--link:hover {
+    color: red;
+}
+
+.loginPage--input {
+    margin: 0 auto 10px;
+    /*width: 90%;*/
+    padding: 3px 10px;
+    font-size: 18px;
+    color: #7a839c;
+    border-radius: 5px;
+    border: 2px solid rgba(243, 200, 120, 0.5);
+    text-align: center;
+}
+
+.loginPage--label {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.book--name,
+.book--autor {
+    color: black;
+}
+
+.book--form {
+    margin: 0 auto;
+    max-width: 700px;
+    width: 100%;
+}
+
+.book--label {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.book--input {
+    margin: 0 auto 10px;
+    max-width: 700px;
+    width: 100%;
+    padding: 3px 10px;
+    font-size: 18px;
+    color: #7a839c;
+    border-radius: 5px;
+    border: 2px solid rgba(243, 200, 120, 0.5);
+    text-align: center;
+}
+
+.book--input-text {
+    resize: none;
+    height: 300px;
+    text-align: left;
+}
+
+.book--input:focus {
+    color: black;
+}
+
+.book--btn {
+    display: block;
+    width: 500px;
+    margin: 0;
+}
+
+.book--btn:focus {
+    outline: 3px solid #4d90fe;
+}
+
+.onebook {
+    padding: 15px 50px;
+    position: relative;
+    font-size: 20px;
+}
+
+.onebook--delete {
+    position: absolute;
+    color: black;
+    top: 20px;
+    right: 20px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+}
+
+.onebook--price {
+    margin-bottom: 10px;
+}
+
+.onebook--price span {
+    font-weight: 700;
+}
+
+.onebook--delete:hover {
+    color: red;
+}
+
+.onebook img {
+    float: left;
+    margin-right: 10px;
+}
+
+.btn-position_onebook {
+    display: block;
+    margin: 30px 0;
+    width: 200px;
+}
+
+.cl-fix {
+    clear: both;
+}
+
+.basket {
+    padding: 15px 50px;
+}
+.basket-login {
+    text-align: center;
+    background: #7a839c;
+}
+
+.basket--btn {
+    display: block;
+    margin: 15px auto 0;
+    width: 200px;
+    text-align: center;
+    border-color: #fff;
+}
+
+.basket--btn_conteiner {
+    display: flex;
+}
+
+.basket--btn:hover {
+    border-color: #f2795a;
+}
+
+.basket--btn-one {
+    width: 49%;
+}
+
+.b_table {
+    border: 2px solid #2f364a;
+    padding: 5px;
+}
+
+.b_table--item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #515b6e;
+}
+
+.b_table--item-bolt * {
+    font-weight: 700;
+}
+
+.b_table--name {
+    min-width: 150px;
+}
+
+.b_table--amount {
+    min-width: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.b_table--amount-btn:active {
+    font-size: 15px;
+}
+
+.b_table--price {
+    min-width: 100px;
+    text-align: center;
+}
+
+.b_table--delete {
+    min-width: 40px;
+}
+
+.b_table--link,
+.a_table--link {
+    display: block;
+    text-align: center;
+    color: black;
+    transition: 0s;
+}
+
+.a_table--link {
+    text-align: left;
+}
+
+.a_table--link:hover,
+.b_table--link:hover {
+    color: red;
+}
+
+.a_table {
+    border: 2px solid #2f364a;
+    padding: 5px;
+}
+
+.a_table--item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #515b6e;
+}
+
+.a_table--item > * {
+    width: 21%;
+}
+
+.a_table--delete {
+    width: 5%;
+}
+
+.a_table--input {
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 18px;
+}

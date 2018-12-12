@@ -1,0 +1,28 @@
+{% extends 'index.twig' %}
+{% block sidebar %}
+    {% include 'sidebar.twig' %}
+{% endblock %}
+
+{% block login %}
+    {% include 'autorization.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <header class="main--header">
+            <h1 class="main--caption">{{ book.name }}</h1>
+        </header>
+        <div class="onebook">
+            <img src="{{ book.img }}" alt="{{ book.name }}">
+            <p class="onebook--price"><span>Цена:</span> {{ book.price }}</p>
+            <h3>Описание:</h3>
+            <p>{{ book.description }}</p>
+            <div class="cl-fix"></div>
+            <a href="?c=basket&action=addBasket&id={{ book.id }}" class="btn btn-position_onebook">
+                <i class="fas fa-plus"></i></span>Добавить книгу
+            </a>
+            <a href="?c=book&action=delete&id={{ book.id }}" class="onebook--delete">Удалить</a>
+        </div>
+    </div>
+{% endblock %}
+

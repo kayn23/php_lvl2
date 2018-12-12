@@ -1,0 +1,21 @@
+{% extends 'index.twig' %}
+{% block sidebar %}
+    {% include 'sidebar.twig' %}
+{% endblock %}
+
+{% block login %}
+    {% include 'autorization.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <header class="main--header">
+            <h1 class="main--caption">Ваш заказ оформлен</h1>
+        </header>
+        <div class="basket">
+            <h3>Номер заказа: {{ basket.id }}</h3>
+            <p>Время оформления: {{ basket.time }}</p>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,39 @@
+{% extends 'index.twig' %}
+{% block sidebar %}
+    {% include 'sidebar.twig' %}
+{% endblock %}
+
+{% block login %}
+    {% include 'autorization.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <header class="main--header">
+            <h1 class="main--caption">Личный кабинет {{ user }}</h1>
+        </header>
+        <div class="loginPage">
+            <label for="loginPage_email" class="loginPage--label">Ваш Email</label>
+            <input id="loginPage_email" type="text" value="{{ email }}" class="loginPage--input">
+        </div>
+        <div class="basket">
+            <h2>Ваши заказы</h2>
+            <div class="a_table">
+                <div class="a_table--item">
+                    <div class="a_table--id">Номер заказа</div>
+                    <div class="a_table--price">Стоимость заказа</div>
+                    <div class="a_table--time">Время создания</div>
+                    <div class="a_table--status">Статус</div>
+                </div>
+                {% for key in orders %}
+                    <div class="a_table--item">
+                        <div class="a_table--id">{{ key.id }}</div>
+                        <div class="a_table--price">{{ key.price }}</div>
+                        <div class="a_table--time">{{ key.created_at }}</div>
+                        <div class="a_table--status">{{ key.status }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'index.twig' %}
+{% block sidebar %}
+    {% include 'sidebar.twig' %}
+{% endblock %}
+
+{% block login %}
+    {% include 'autorization.twig' %}
+{% endblock %}
+
+{% block main %}
+    <div class="main">
+        <header class="main--header">
+            <h1 class="main--caption">Для продолжения необходимо войти или зарегистрироваться</h1>
+        </header>
+        <div class="basket basket-login">
+            <form action="?c=page&action=autorization" method="POST" autocomplete="off">
+                <label class="autorization--label" for="name">Логин</label>
+                <input class="autorization--input" id="name" type="text" name="name"/>
+                <label class="autorization--label" for="pass">Пароль</label>
+                <input class="autorization--input" id="pass" type="password" name="pass"/>
+                <label class="autorization--label js-regin" for="email">Email</label>
+                <input class="autorization--input js-regin" id="email" type="text" name="email"/>
+                <div class="autorization--login js-login">
+                    <button class="login_btn login_btn-in" name="action" value="login">Войти</button>
+                </div>
+
+                <div class="autorization--login js-regin">
+                    <button class="login_btn login_btn-reg " name="action" value="reg">Зарегистрироваться</button>
+                </div>
+                <a class="autorization--link js-log js-regin">Войти</a>
+                <a class="autorization--link js-reg">Зарегистрироваться</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
